@@ -1,640 +1,1492 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Boutique - Galerie de Cheveux Premium</title>
+    <meta
+      name="description"
+      content="MISS MAKEUP - Boutique en ligne premium: cheveux, perruques, sacs, baskets et sandales."
+    />
+    <title>MISS MAKEUP | Boutique Premium</title>
     <link rel="shortcut icon" href="./fille.jpeg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f8f6f2;
+        --ink: #171616;
+        --muted: #6c6762;
+        --card: #ffffff;
+        --accent: #c18a29;
+        --accent-2: #7f5a13;
+        --edge: #e7ddd0;
+      }
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+      * {
+        box-sizing: border-box;
+      }
 
-    <!-- Tailwind config -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#000000",
-              gold: "#d4af37",
-            },
-          },
-        },
-      };
-    </script>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 15% 10%, #efe3cf 0%, transparent 35%),
+          radial-gradient(circle at 85% 90%, #efe2ce 0%, transparent 35%),
+          var(--bg);
+      }
+
+      .container {
+        width: min(1120px, 92%);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(8px);
+        background: rgba(248, 246, 242, 0.86);
+        border-bottom: 1px solid var(--edge);
+      }
+
+      .nav {
+        min-height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      .logo img {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid var(--edge);
+      }
+
+      .links {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .links a {
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+
+      .links a:hover {
+        color: var(--accent);
+      }
+
+      .mini-top-btn {
+        border: 1px solid #d8c9b1;
+        background: #fff;
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .menu-btn {
+        display: none;
+        border: 1px solid var(--accent);
+        background: transparent;
+        color: var(--accent);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-weight: 700;
+      }
+
+      .hero {
+        padding: 82px 0 62px;
+      }
+
+      .hero-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .chip {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid #d6c3a2;
+        background: #f7efe1;
+        color: var(--accent-2);
+      }
+
+      .hero h1 {
+        font-family: "Syne", sans-serif;
+        line-height: 1.03;
+        font-size: clamp(2rem, 5vw, 4rem);
+        margin: 14px 0 16px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 55ch;
+      }
+
+      .hero-actions {
+        margin-top: 24px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        text-decoration: none;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-weight: 800;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: linear-gradient(120deg, var(--accent), #d7a24a);
+        color: #fff;
+      }
+
+      .btn-secondary {
+        border: 1px solid var(--edge);
+        color: var(--ink);
+        background: #fff;
+      }
+
+      .hero-card {
+        border-radius: 26px;
+        overflow: hidden;
+        box-shadow: 0 20px 55px rgba(77, 53, 20, 0.18);
+        border: 1px solid #decfb9;
+      }
+
+      .hero-card img {
+        width: 100%;
+        height: 100%;
+        min-height: 380px;
+        object-fit: cover;
+        display: block;
+      }
+
+      section {
+        scroll-margin-top: 95px;
+      }
+
+      .section-head {
+        margin-bottom: 20px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-family: "Syne", sans-serif;
+        font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+      }
+
+      .section-head p {
+        color: var(--muted);
+        margin-top: 8px;
+      }
+
+      .boutique {
+        padding: 28px 0 20px;
+      }
+
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--edge);
+        border-radius: 18px;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 28px rgba(22, 17, 11, 0.12);
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card-body {
+        padding: 14px;
+      }
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+        font-family: "Syne", sans-serif;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .galerie {
+        padding: 46px 0;
+      }
+
+      .masonry {
+        columns: 4 220px;
+        column-gap: 14px;
+      }
+
+      .masonry img {
+        width: 100%;
+        margin: 0 0 14px;
+        border-radius: 14px;
+        border: 1px solid var(--edge);
+        break-inside: avoid;
+        display: block;
+      }
+
+      .contact {
+        padding: 18px 0 76px;
+      }
+
+      .details-grid {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+
+      .filters {
+        margin-top: 10px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        border: 1px solid #d8c6a4;
+        background: #fff;
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 7px 11px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .filter-btn.active {
+        background: #171616;
+        border-color: #171616;
+        color: #fff;
+      }
+
+      .detail-card {
+        background: #fff;
+        border: 1px solid var(--edge);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+
+      .detail-card img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .detail-body {
+        padding: 12px;
+      }
+
+      .detail-body h4 {
+        margin: 0 0 6px;
+        font-size: 0.96rem;
+        font-family: "Syne", sans-serif;
+      }
+
+      .detail-body p {
+        margin: 0 0 8px;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .detail-actions {
+        margin-top: 8px;
+        display: flex;
+        gap: 8px;
+      }
+
+      .action-btn {
+        border: 1px solid #dac7a5;
+        background: #fff;
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 0.78rem;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .action-btn.primary {
+        background: linear-gradient(120deg, var(--accent), #d7a24a);
+        border-color: #c48f33;
+        color: #fff;
+      }
+
+      .price {
+        display: inline-block;
+        background: #f7efe1;
+        color: #6f5016;
+        border: 1px solid #e1cda9;
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+
+      .category-tag {
+        display: inline-block;
+        margin-bottom: 8px;
+        background: #f2f4f8;
+        color: #3d4250;
+        border: 1px solid #d7dce5;
+        border-radius: 999px;
+        padding: 4px 8px;
+        font-size: 0.72rem;
+        font-weight: 800;
+      }
+
+      .extra {
+        padding: 10px 0 36px;
+      }
+
+      .extra-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .panel {
+        background: #fff;
+        border: 1px solid var(--edge);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .meta {
+        display: grid;
+        gap: 10px;
+      }
+
+      .meta a {
+        color: #184f88;
+        text-decoration: none;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+
+      .field label {
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        font: inherit;
+        border: 1px solid #d9d0c4;
+        border-radius: 10px;
+        padding: 10px 12px;
+        background: #fffcf8;
+      }
+
+      .submit {
+        border: 0;
+        border-radius: 10px;
+        padding: 12px 14px;
+        background: #121212;
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .footer {
+        border-top: 1px solid var(--edge);
+        padding: 22px 0 28px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .cart-fab {
+        position: fixed;
+        right: 18px;
+        bottom: calc(18px + env(safe-area-inset-bottom));
+        z-index: 60;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 16px;
+        font-weight: 800;
+        background: #121212;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 14px;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(560px, 100%);
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid var(--edge);
+        padding: 16px;
+        max-height: 90vh;
+        overflow: auto;
+      }
+
+      .modal-card h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-family: "Syne", sans-serif;
+      }
+
+      .pay-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .pay-grid button,
+      .modal-actions button {
+        border: 1px solid #d8c6a4;
+        background: #fff;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .modal-actions {
+        margin-top: 12px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        animation: reveal 0.65s ease forwards;
+      }
+
+      .reveal.delay-1 {
+        animation-delay: 0.12s;
+      }
+
+      .reveal.delay-2 {
+        animation-delay: 0.2s;
+      }
+
+      @keyframes reveal {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.38);
+        z-index: 44;
+        display: none;
+      }
+
+      .mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(80vw, 320px);
+        height: 100vh;
+        background: #fff;
+        border-right: 1px solid var(--edge);
+        transform: translateX(-100%);
+        transition: transform 0.24s ease;
+        z-index: 45;
+        padding: 22px 18px;
+      }
+
+      .mobile a {
+        display: block;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .mobile.open {
+        transform: translateX(0);
+      }
+
+      .overlay.open {
+        display: block;
+      }
+
+      @media (max-width: 980px) {
+        .hero-wrap,
+        .extra-wrap,
+        .contact-wrap {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-4 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .details-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .masonry {
+          columns: 3 180px;
+        }
+      }
+
+      @media (max-width: 740px) {
+        .links {
+          display: none;
+        }
+
+        .menu-btn {
+          display: inline-block;
+        }
+
+        .hero {
+          padding-top: 54px;
+        }
+
+        .hero-card img {
+          min-height: 280px;
+        }
+
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pay-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .masonry {
+          columns: 2 150px;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+          text-align: center;
+        }
+
+        .filters {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          padding-bottom: 4px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .container {
+          width: min(1120px, 94%);
+        }
+
+        .logo {
+          font-size: 0.95rem;
+        }
+
+        .logo img {
+          width: 34px;
+          height: 34px;
+        }
+
+        .hero {
+          padding: 42px 0 40px;
+        }
+
+        .masonry {
+          columns: 1;
+        }
+
+        .modal {
+          padding: 8px;
+        }
+
+        .cart-fab {
+          right: 10px;
+          left: 10px;
+          border-radius: 12px;
+          text-align: center;
+          padding: 13px 14px;
+        }
+      }
+    </style>
   </head>
-  <body class="bg-gray-50 text-gray-900">
-    <!-- NAVBAR -->
-    <nav
-      class="flex justify-between items-center px-4 md:px-8 py-4 bg-white shadow-md sticky top-0 z-50"
-    >
-      <div class="flex items-center gap-4">
-        <!-- MOBILE MENU BUTTON -->
-        <button
-          onclick="toggleSidebar()"
-          class="md:hidden px-4 py-2 rounded-full font-semibold transition border-2 border-gold text-gold hover:bg-gold hover:text-black"
-        >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-        <h1 class="text-xl md:text-2xl font-bold tracking-wide">
-          Burnie Shop
-        </h1>
-      </div>
-      <div class="hidden md:flex gap-8 items-center">
-        <a href="index.html" class="font-semibold hover:text-gold transition" data-lang="nav-home"
-          >Accueil</a
-        >
-        <a href="boutique.html" class="font-semibold hover:text-gold transition" data-lang="nav-boutik"
-          >Boutique</a
-        >
-        <a href="gallery.html" class="font-semibold hover:text-gold transition" data-lang="nav-gallery"
-          >Galerie</a
-        >
-        <a href="contact.html" class="font-semibold hover:text-gold transition" data-lang="nav-contact"
-          >Contact</a
-        >
-        <div class="flex gap-2 ml-4">
-          <button
-            onclick="switchLanguage('fr')"
-            class="px-3 py-1 text-sm font-semibold border-2 border-gold text-gold hover:bg-gold hover:text-black transition"
-            id="lang-fr"
-          >
-            FR
-          </button>
-          <button
-            onclick="switchLanguage('en')"
-            class="px-3 py-1 text-sm font-semibold border-2 border-gray-300 text-gray-600 hover:bg-gray-300 hover:text-black transition"
-            id="lang-en"
-          >
-            EN
-          </button>
-        </div>
-      </div>
-    </nav>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#accueil" class="logo"><img src="./logo.jpg" alt="Logo Miss Makeup" /> MISS <span>MAKEUP</span></a>
 
-    <!-- MOBILE SIDEBAR -->
-    <div
-      id="sidebarOverlay"
-      class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"
-      onclick="closeSidebar()"
-    ></div>
-    <div
-      id="sidebar"
-      class="fixed left-0 top-0 h-full w-[85vw] max-w-80 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 md:hidden"
-    >
-      <div class="p-6">
-        <button
-          onclick="closeSidebar()"
-          class="absolute top-4 right-4 text-2xl font-bold"
-        >
-          ×
-        </button>
-        <h2 class="text-xl font-bold mb-6 text-center">Menu</h2>
-        <div class="space-y-4">
-          <a
-            href="index.html"
-            class="block py-2 px-4 rounded hover:bg-gray-100 transition"
-            onclick="closeSidebar()"
-            data-lang="nav-home"
-            >Accueil</a
-          >
-          <a
-            href="boutique.html"
-            class="block py-2 px-4 rounded hover:bg-gray-100 transition"
-            onclick="closeSidebar()"
-            data-lang="nav-boutik"
-            >Boutique</a
-          >
-          <a
-            href="gallery.html"
-            class="block py-2 px-4 rounded hover:bg-gray-100 transition"
-            onclick="closeSidebar()"
-            data-lang="nav-gallery"
-            >Galerie</a
-          >
-          <a
-            href="contact.html"
-            class="block py-2 px-4 rounded hover:bg-gray-100 transition"
-            onclick="closeSidebar()"
-            data-lang="nav-contact"
-            >Contact</a
-          >
+        <button id="menuBtn" class="menu-btn" type="button">Menu</button>
+
+        <nav class="links" aria-label="Navigation principale">
+          <a href="#accueil">Accueil</a>
+          <a href="#boutique">Boutique</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#contact">Contact</a>
+          <button id="openNewsletter" class="mini-top-btn" type="button">Newsletter</button>
+          <button id="openAccount" class="mini-top-btn" type="button">Compte</button>
+        </nav>
+      </div>
+    </header>
+
+    <div id="overlay" class="overlay"></div>
+    <aside id="mobileNav" class="mobile" aria-label="Menu mobile">
+      <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#boutique">Boutique</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section id="accueil" class="hero">
+        <div class="container hero-wrap">
+          <div>
+            <span class="chip reveal">Collection glamour chic</span>
+            <h1 class="reveal delay-1">La beaute a ton image</h1>
+            <p class="reveal delay-2">
+              Collection exclusive de vetements, chaussures, perruques et cosmetiques.
+              Commande en ligne et contact rapide pour vos besoins.
+            </p>
+            <div class="hero-actions reveal delay-2">
+              <a class="btn btn-primary" href="#boutique">Explorer la boutique</a>
+              <a class="btn btn-secondary" href="#contact">Demander un produit</a>
+            </div>
+          </div>
+
+          <figure class="hero-card reveal delay-1">
+            <img src="./kenoleedesign.jpeg" alt="Collection MISS MAKEUP" />
+          </figure>
         </div>
-        <div class="mt-8 pt-6 border-t border-gray-200">
-          <h3 class="text-lg font-semibold mb-4 text-center" data-lang="sidebar-lang">Langue</h3>
-          <div class="flex justify-center gap-2 mb-6">
-            <button
-              onclick="
-                switchLanguage('fr');
-                closeSidebar();
-              "
-              class="px-4 py-2 text-sm font-semibold border-2 border-gold text-gold hover:bg-gold hover:text-black transition"
-              id="lang-fr-mobile"
-            >
-              FR
-            </button>
-            <button
-              onclick="
-                switchLanguage('en');
-                closeSidebar();
-              "
-              class="px-4 py-2 text-sm font-semibold border-2 border-gray-300 text-gray-600 hover:bg-gray-300 hover:text-black transition"
-              id="lang-en-mobile"
-            >
-              EN
-            </button>
+      </section>
+
+      <section id="boutique" class="boutique">
+        <div class="container">
+          <div class="section-head">
+            <h2>Boutique</h2>
+            <p>Decouvre nos categories principales.</p>
           </div>
-          <h3 class="text-lg font-semibold mb-4 text-center">Suivez-nous</h3>
-          <div class="flex justify-center gap-5">
-            <a
-              href="https://www.facebook.com/share/1AkCdm1ixj/"
-              target="_blank"
-              class="text-gray-600 hover:text-gold transition"
-              aria-label="Facebook"
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                />
-              </svg>
-            </a>
-            <a
-              href="https://www.instagram.com/burnie_shop?igsh=bDZzcTkwaGMwZndi"
-              target="_blank"
-              class="text-gray-600 hover:text-gold transition"
-              aria-label="Instagram"
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                />
-              </svg>
-            </a>
-            <a
-              href="https://www.tiktok.com/@burnie_shop?_r=1&_t=ZM-931avdVUjSl"
-              target="_blank"
-              class="text-gray-600 hover:text-gold transition"
-              aria-label="TikTok"
-            >
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"
-                />
-              </svg>
-            </a>
+
+          <div class="grid-4">
+            <article class="card">
+              <img src="./peruque_lace_front.jpg" alt="Cheveux et perruques" />
+              <div class="card-body">
+                <h3>Cheveux & Perruques</h3>
+                <p>Pieces premium, textures naturelles, finitions soignees.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="./Bags/0001_COACH GREEN BAG.jpeg" alt="Sacs" />
+              <div class="card-body">
+                <h3>Sacs</h3>
+                <p>Selection mode pour completer chaque silhouette.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="./Baskets/0001_BALENCIAGA BASKETS.jpeg" alt="Baskets" />
+              <div class="card-body">
+                <h3>Baskets</h3>
+                <p>Modeles urbains et tendances pour un style affirmé.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="./Sandales/0001_BALENCIAGA SANDALES.jpeg" alt="Sandales" />
+              <div class="card-body">
+                <h3>Sandales</h3>
+                <p>Confort, élégance et collection saisonnière.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="./capillaire.jpg" alt="Gammes capillaires" />
+              <div class="card-body">
+                <h3>Gammes capillaires</h3>
+                <p>Soins et entretien pour des cheveux sains et brillants.</p>
+              </div>
+            </article>
+
+            <article class="card">
+              <img src="./sextoy/vibrator.svg" alt="Sextoy" />
+              <div class="card-body">
+                <h3>Sextoy</h3>
+                <p>Collection intime: langue, fleur, vibrator et plus.</p>
+              </div>
+            </article>
           </div>
+
+          <div class="section-head" style="margin-top: 24px">
+            <h2>Produits populaires</h2>
+            <p>Selection coup de coeur avec details et prix.</p>
+          </div>
+          <div id="categoryFilters" class="filters"></div>
+          <div id="productsGrid" class="details-grid"></div>
+        </div>
+      </section>
+
+      <section class="extra">
+        <div class="container extra-wrap">
+          <article class="panel">
+            <h3 style="margin-top: 0; font-family: 'Syne', sans-serif">Paiement & securite</h3>
+            <p style="margin-bottom: 0; color: var(--muted)">
+              Nous acceptons Carte bancaire, MonCash et NatCash. Le flux de paiement peut etre relie ensuite a une API de paiement.
+            </p>
+          </article>
+          <article class="panel">
+            <h3 style="margin-top: 0; font-family: 'Syne', sans-serif">A propos</h3>
+            <p style="margin-bottom: 0; color: var(--muted)">
+              Miss Makeup Store & More est une boutique glamour dediee a la femme moderne, avec une selection de mode, beaute et produits capillaires premium.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="galerie" class="galerie">
+        <div class="container">
+          <div class="section-head">
+            <h2>Galerie visuelle</h2>
+            <p>Un apercu de nos produits phares.</p>
+          </div>
+
+          <div id="galleryGrid" class="masonry"></div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact rapide</h2>
+            <p>Canaux directs + formulaire simple pour les demandes clients.</p>
+          </div>
+
+          <div class="contact-wrap">
+            <article class="panel meta">
+              <div><strong>WhatsApp:</strong> <a href="https://wa.me/50942242185" target="_blank" rel="noopener">+509 4224-2185</a></div>
+              <div><strong>Telephone:</strong> <a href="tel:+50942242185">+509 4224-2185</a></div>
+              <div><strong>Email:</strong> <a href="mailto:missmakeupstoreandmore@gmail.com">missmakeupstoreandmore@gmail.com</a></div>
+              <div><strong>Disponibilite:</strong> 7j/7</div>
+            </article>
+
+            <form class="panel" id="contactForm">
+              <div class="field">
+                <label for="name">Nom</label>
+                <input id="name" name="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button class="submit" type="submit">Envoyer</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button id="cartBtn" class="cart-fab" type="button">Panier (0)</button>
+
+    <div id="quickModal" class="modal" aria-hidden="true">
+      <div class="modal-card">
+        <h3 id="quickTitle">Produit</h3>
+        <p id="quickCategory" class="category-tag"></p>
+        <p id="quickDesc"></p>
+        <p><strong id="quickPrice">$0</strong></p>
+        <div class="modal-actions">
+          <button type="button" data-close-modal="quickModal">Fermer</button>
         </div>
       </div>
     </div>
 
-    <!-- HERO SECTION -->
-    <section
-      class="h-[90vh] flex items-center justify-center bg-cover bg-center relative"
-      style="background-image: url(&quot;./kenoleedesign.jpeg&quot;)"
-    >
-      <div class="absolute inset-0 bg-black/50"></div>
-      <div class="relative z-10 text-center text-white px-4 md:px-6">
-        <h2
-          class="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6"
-          data-lang="hero-title"
-        >
-          Cheveux 100% Humains
-        </h2>
-        <p
-          class="text-base sm:text-xl md:text-2xl mb-6 md:mb-8"
-          data-lang="hero-subtitle"
-        >
-          Galerie exclusive • Qualité supérieure • Livraison rapide
-        </p>
-        <div class="flex gap-3 md:gap-4 justify-center flex-wrap">
-          <a
-            href="gallery.html"
-            class="bg-gold text-black px-5 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition text-sm sm:text-lg"
-            data-lang="hero-gallery-btn"
-          >
-            Découvrir la Galerie
-          </a>
-          <a
-            href="contact.html"
-            class="bg-black border-2 border-gold text-gold px-5 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-gold hover:text-black transition text-sm sm:text-lg"
-            data-lang="hero-contact-btn"
-          >
-            Nous Contacter
-          </a>
+    <div id="paymentModal" class="modal" aria-hidden="true">
+      <div class="modal-card">
+        <h3>Paiement</h3>
+        <p id="orderSummary">Articles dans le panier: 0</p>
+        <div class="field">
+          <label for="orderClientName">Nom du client</label>
+          <input id="orderClientName" type="text" />
+        </div>
+        <div class="field">
+          <label for="orderClientPhone">Telephone du client</label>
+          <input id="orderClientPhone" type="tel" placeholder="+509..." />
+        </div>
+        <div class="pay-grid">
+          <button class="js-pay" data-method="Carte bancaire" type="button">Carte bancaire</button>
+          <button class="js-pay" data-method="MonCash" type="button">MonCash</button>
+          <button class="js-pay" data-method="NatCash" type="button">NatCash</button>
+        </div>
+        <div class="modal-actions">
+          <button type="button" data-close-modal="paymentModal">Annuler</button>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- FEATURES -->
-    <section class="px-4 md:px-16 py-12 md:py-20 bg-white">
-      <h3
-        class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16"
-        data-lang="features-title"
-      >
-        Pourquoi Choisir Burnie Shop?
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-        <div class="text-center">
-          <div class="text-4xl md:text-5xl mb-4"></div>
-          <h4
-            class="text-xl md:text-2xl font-bold mb-3"
-            data-lang="feature1-title"
-          >
-            100% Cheveux Humains
-          </h4>
-          <p
-            class="text-gray-600 text-sm md:text-base"
-            data-lang="feature1-desc"
-          >
-            Cheveux naturels de haute qualité, non traités chimiquement
-          </p>
+    <div id="accountModal" class="modal" aria-hidden="true">
+      <div class="modal-card">
+        <h3>Se connecter / Creer un compte</h3>
+        <div class="field">
+          <label for="acctName">Nom</label>
+          <input id="acctName" />
         </div>
-
-        <div class="text-center">
-          <div class="text-4xl md:text-5xl mb-4"></div>
-          <h4
-            class="text-xl md:text-2xl font-bold mb-3"
-            data-lang="feature2-title"
-          >
-            Livraison Rapide
-          </h4>
-          <p
-            class="text-gray-600 text-sm md:text-base"
-            data-lang="feature2-desc"
-          >
-            Livraison express disponible dans tout le pays
-          </p>
+        <div class="field">
+          <label for="acctEmail">Email</label>
+          <input id="acctEmail" type="email" />
         </div>
-
-        <div class="text-center">
-          <div class="text-4xl md:text-5xl mb-4"></div>
-          <h4
-            class="text-xl md:text-2xl font-bold mb-3"
-            data-lang="feature3-title"
-          >
-            Garantie Qualité
-          </h4>
-          <p
-            class="text-gray-600 text-sm md:text-base"
-            data-lang="feature3-desc"
-          >
-            Satisfaction garantie
-          </p>
+        <div class="field">
+          <label for="acctPwd">Mot de passe</label>
+          <input id="acctPwd" type="password" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" data-close-modal="accountModal">Annuler</button>
+          <button id="confirmAccount" type="button">Creer</button>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- LATEST COLLECTION -->
-    <section class="px-4 md:px-16 py-12 md:py-20 bg-gray-100">
-      <h3 class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16">
-        Dernière Collection
-      </h3>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        <div
-          class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition group"
-        >
-          <div class="relative overflow-hidden h-40 sm:h-60 md:h-80">
-            <img
-              src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400"
-              class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-              alt="Cheveux Brésiliens Raides"
-            />
-          </div>
-          <div class="p-3 sm:p-6">
-            <h4 class="font-bold text-sm sm:text-lg mb-2">
-              Cheveux Brésiliens Raides
-            </h4>
-          </div>
+    <div id="newsletterModal" class="modal" aria-hidden="true">
+      <div class="modal-card">
+        <h3>S'abonner a la newsletter</h3>
+        <div class="field">
+          <label for="newsletterInput">Email</label>
+          <input id="newsletterInput" type="email" />
         </div>
-
-        <div
-          class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition group"
-        >
-          <div class="relative overflow-hidden h-40 sm:h-60 md:h-80">
-            <img
-              src="./kenoleedesign.jpeg"
-              class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-              alt="Ondes Corporelles"
-            />
-          </div>
-          <div class="p-3 sm:p-6">
-            <h4 class="font-bold text-sm sm:text-lg mb-2">Cheveux Bouclés</h4>
-          </div>
-        </div>
-
-        <!-- Removed third card (Boucles Naturelles) as requested -->
-
-        <div
-          class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition group"
-        >
-          <div class="relative overflow-hidden h-40 sm:h-60 md:h-80">
-            <img
-              src="./peruque_lace_front.jpg"
-              class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-              alt="Perruque Lace Front"
-            />
-          </div>
-          <div class="p-3 sm:p-6">
-            <h4 class="font-bold text-sm sm:text-lg mb-2">
-              Perruque Lace Front
-            </h4>
-            <p class="text-gray-600 text-xs sm:text-base mb-2 sm:mb-4"></p>
-          </div>
+        <div class="modal-actions">
+          <button type="button" data-close-modal="newsletterModal">Annuler</button>
+          <button id="confirmNewsletter" type="button">S'abonner</button>
         </div>
       </div>
-      <div class="text-center mt-8 md:mt-12">
-        <a
-          href="gallery.html"
-          class="bg-gold text-black px-6 sm:px-8 py-3 rounded-full font-bold hover:scale-105 transition inline-block text-sm sm:text-base"
-        >
-          Voir Tous les Produits →
-        </a>
-      </div>
-    </section>
+    </div>
 
-    <!-- TESTIMONIALS -->
-    <section class="px-4 md:px-16 py-12 md:py-20 bg-white">
-      <h3
-        class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16"
-        data-lang="testimonials-title"
-      >
-        Avis de Nos Clients
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-        <div class="bg-gray-100 p-5 md:p-8 rounded-lg">
-          <div class="text-gold text-xl md:text-2xl mb-3">★★★★★</div>
-          <p
-            class="text-gray-700 mb-4 text-sm md:text-base"
-            data-lang="testimonial1-text"
-          >
-            "Les cheveux sont incroyables! Excellente qualité et livraison
-            rapide. Je recommande vivement HairLux!"
-          </p>
-          <p
-            class="font-bold text-sm md:text-base"
-            data-lang="testimonial1-author"
-          >
-            - Marie D.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-5 md:p-8 rounded-lg">
-          <div class="text-gold text-xl md:text-2xl mb-3">★★★★★</div>
-          <p
-            class="text-gray-700 mb-4 text-sm md:text-base"
-            data-lang="testimonial2-text"
-          >
-            "Meilleur achat que j'ai jamais fait. Les cheveux durent longtemps
-            et ont l'air naturels. Merci!"
-          </p>
-          <p
-            class="font-bold text-sm md:text-base"
-            data-lang="testimonial2-author"
-          >
-            - Sophie L.
-          </p>
-        </div>
-
-        <div class="bg-gray-100 p-5 md:p-8 rounded-lg">
-          <div class="text-gold text-xl md:text-2xl mb-3">★★★★★</div>
-          <p
-            class="text-gray-700 mb-4 text-sm md:text-base"
-            data-lang="testimonial3-text"
-          >
-            "Service client extraordinaire et produits de qualité supérieure.
-            Très satisfaite de mon achat!"
-          </p>
-          <p
-            class="font-bold text-sm md:text-base"
-            data-lang="testimonial3-author"
-          >
-            - Jessica M.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section
-      class="bg-black text-white px-4 md:px-16 py-12 md:py-20 text-center"
-    >
-      <h3
-        class="text-2xl md:text-4xl font-bold mb-4 md:mb-6"
-        data-lang="cta-title"
-      >
-        Prêt(e) à Transformer Vos Cheveux?
-      </h3>
-      <p
-        class="text-base md:text-xl mb-6 md:mb-8 text-gray-300"
-        data-lang="cta-subtitle"
-      >
-        Explorez notre collection exclusive dès maintenant
-      </p>
-      <a
-        href="gallery.html"
-        class="bg-gold text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition inline-block text-sm sm:text-lg"
-        data-lang="cta-btn"
-      >
-        Consulter la Galerie
-      </a>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white text-center py-6 md:py-8 px-4">
-      <p class="mb-4 text-sm md:text-base">
-        &copy; 2026 Boutique — Designed By
-        <a href="https://xiodix.com" target="_blank" class="hover:text-gold"
-          >XIODIX</a
-        >
-      </p>
-      <div class="flex justify-center gap-5 md:gap-6">
-        <a
-          href="https://www.facebook.com/share/1AkCdm1ixj/"
-          target="_blank"
-          class="hover:text-gold transition"
-          aria-label="Facebook"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://www.instagram.com/burnie_shop?igsh=bDZzcTkwaGMwZndi"
-          target="_blank"
-          class="hover:text-gold transition"
-          aria-label="Instagram"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-            />
-          </svg>
-        </a>
-        <a
-          href="https://www.tiktok.com/@burnie_shop?_r=1&_t=ZM-931avdVUjSl"
-          target="_blank"
-          class="hover:text-gold transition"
-          aria-label="TikTok"
-        >
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"
-            />
-          </svg>
-        </a>
-      </div>
+    <footer class="footer">
+      <div class="container">© 2026 MISS MAKEUP - Tous droits reserves.</div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
-      // Translations object
-      const translations = {
-        fr: {
-          "nav-home": "Accueil",
-          "nav-boutik": "Boutique",
-          "nav-gallery": "Galerie",
-          "nav-contact": "Contact",
-          "sidebar-lang": "Langue",
-          "hero-title": "Cheveux 100% Humains",
-          "hero-subtitle":
-            "Galerie exclusive • Qualité supérieure • Livraison rapide",
-          "hero-gallery-btn": "Découvrir la Galerie",
-          "hero-contact-btn": "Nous Contacter",
-          "features-title": "Pourquoi Choisir Burnie Shop?",
-          "feature1-title": "100% Cheveux Humains",
-          "feature1-desc":
-            "Cheveux naturels de haute qualité, non traités chimiquement",
-          "feature2-title": "Livraison Rapide",
-          "feature2-desc": "Livraison express disponible dans tout le pays",
-          "feature3-title": "Garantie Qualité",
-          "feature3-desc": "Satisfaction garantie",
-          "testimonials-title": "Avis de Nos Clients",
-          "testimonial1-text":
-            '"Les cheveux sont incroyables! Excellente qualité et livraison rapide. Je recommande vivement HairLux!"',
-          "testimonial1-author": "- Marie D.",
-          "testimonial2-text":
-            "\"Meilleur achat que j'ai jamais fait. Les cheveux durent longtemps et ont l'air naturels. Merci!\"",
-          "testimonial2-author": "- Sophie L.",
-          "testimonial3-text":
-            '"Service client extraordinaire et produits de qualité supérieure. Très satisfaite de mon achat!"',
-          "testimonial3-author": "- Jessica M.",
-          "cta-title": "Prêt(e) à Transformer Vos Cheveux?",
-          "cta-subtitle": "Explorez notre collection exclusive dès maintenant",
-          "cta-btn": "Consulter la Galerie",
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileNav = document.getElementById("mobileNav");
+      const overlay = document.getElementById("overlay");
+      function makeSvgDataUri(label, bg = "#f7d4d4", fg = "#6b2c2c") {
+        const safeLabel = String(label || "Produit").replace(/[<>&"']/g, "");
+        const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='640' height='640'><rect width='100%' height='100%' fill='${bg}'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='44' fill='${fg}' font-family='Arial'>${safeLabel}</text></svg>`;
+        return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+      }
+      let PRODUCTS = [];
+      let cart = [];
+      const productsGrid = document.getElementById("productsGrid");
+      const galleryGrid = document.getElementById("galleryGrid");
+      const categoryFilters = document.getElementById("categoryFilters");
+      let activeCategory = "All";
+      const FIXED_PRODUCTS = [
+        {
+          id: "fixed-cap-1",
+          name: "Gamme Capillaire",
+          image: "./capillaire.jpg",
+          category: "Gamme capillaire",
+          price: 22,
+          desc: "Repare et nourrit les cheveux.",
         },
-        en: {
-          "nav-home": "Home",
-          "nav-boutik": "Boutique",
-          "nav-gallery": "Gallery",
-          "nav-contact": "Contact",
-          "sidebar-lang": "Language",
-          "hero-title": "100% Human Hair",
-          "hero-subtitle":
-            "Exclusive Gallery • Superior Quality • Fast Delivery",
-          "hero-gallery-btn": "Discover the Gallery",
-          "hero-contact-btn": "Contact Us",
-          "features-title": "Why Choose Burnie Shop?",
-          "feature1-title": "100% Human Hair",
-          "feature1-desc": "High-quality natural hair, chemically untreated",
-          "feature2-title": "Fast Delivery",
-          "feature2-desc": "Express delivery available nationwide",
-          "feature3-title": "Quality Guarantee",
-          "feature3-desc": "Satisfaction guaranteed",
-          "testimonials-title": "Customer Reviews",
-          "testimonial1-text":
-            '"The hair is amazing! Excellent quality and fast delivery. I highly recommend HairLux!"',
-          "testimonial1-author": "- Marie D.",
-          "testimonial2-text":
-            '"Best purchase I\'ve ever made. The hair lasts long and looks natural. Thank you!"',
-          "testimonial2-author": "- Sophie L.",
-          "testimonial3-text":
-            '"Extraordinary customer service and superior quality products. Very satisfied with my purchase!"',
-          "testimonial3-author": "- Jessica M.",
-          "cta-title": "Ready to Transform Your Hair?",
-          "cta-subtitle": "Explore our exclusive collection now",
-          "cta-btn": "View Gallery",
+        {
+          id: "fixed-b-1",
+          name: "Baskets Balenciaga",
+          image: "./Baskets/0001_BALENCIAGA BASKETS.jpeg",
+          category: "Baskets",
+          price: 95,
+          desc: "Modele urbain premium, finition soignee.",
         },
-      };
+        {
+          id: "fixed-b-2",
+          name: "Baskets Saint Laurent",
+          image: "./Baskets/0002_SAINT LAURENT BASKETS.jpeg",
+          category: "Baskets",
+          price: 98,
+          desc: "Design elegant et confort quotidien.",
+        },
+        {
+          id: "fixed-b-3",
+          name: "Baskets Gucci",
+          image: "./Baskets/0008_GUCCI BASKETS.jpeg",
+          category: "Baskets",
+          price: 105,
+          desc: "Style affirme et look tendance.",
+        },
+        {
+          id: "fixed-b-4",
+          name: "Baskets Fendi",
+          image: "./Baskets/0007_FENDI BASKETS.jpeg",
+          category: "Baskets",
+          price: 102,
+          desc: "Confort et touche luxe moderne.",
+        },
+        {
+          id: "fixed-sand-1",
+          name: "Sandales Balenciaga",
+          image: "./Sandales/0001_BALENCIAGA SANDALES.jpeg",
+          category: "Sandales",
+          price: 72,
+          desc: "Sandales chic avec excellente tenue.",
+        },
+        {
+          id: "fixed-sand-2",
+          name: "Sandales Louis Vuitton",
+          image: "./Sandales/0009_LOUIS VUITTON SANDALES.jpeg",
+          category: "Sandales",
+          price: 76,
+          desc: "Collection elegante pour sortie et soiree.",
+        },
+        {
+          id: "fixed-bag-1",
+          name: "Sac Coach Green",
+          image: "./Bags/0001_COACH GREEN BAG.jpeg",
+          category: "Sacs",
+          price: 68,
+          desc: "Sac pratique et stylise pour tous les jours.",
+        },
+        {
+          id: "fixed-bag-2",
+          name: "Sac Gucci",
+          image: "./Bags/0012_GUCCI BAG.jpeg",
+          category: "Sacs",
+          price: 82,
+          desc: "Finition propre et look premium.",
+        },
+        {
+          id: "fixed-s-1",
+          name: "Sextoy Langue",
+          image: makeSvgDataUri("Sextoy Langue", "#f7d4d4"),
+          category: "Sextoy",
+          price: 45,
+          desc: "Modele langue, texture souple.",
+        },
+        {
+          id: "fixed-s-2",
+          name: "Sextoy Fleur",
+          image: makeSvgDataUri("Sextoy Fleur", "#f3c7cf"),
+          category: "Sextoy",
+          price: 48,
+          desc: "Design fleur, stimulation douce.",
+        },
+        {
+          id: "fixed-s-3",
+          name: "Sextoy Vibrator",
+          image: makeSvgDataUri("Sextoy Vibrator", "#f5ccd7"),
+          category: "Sextoy",
+          price: 52,
+          desc: "Vibrations reglables, usage confortable.",
+        },
+        {
+          id: "fixed-s-4",
+          name: "Sextoy Rabbit",
+          image: makeSvgDataUri("Sextoy Rabbit", "#f6d2dc"),
+          category: "Sextoy",
+          price: 58,
+          desc: "Double stimulation avec design rabbit.",
+        },
+        {
+          id: "fixed-s-5",
+          name: "Sextoy Bullet",
+          image: makeSvgDataUri("Sextoy Bullet", "#f9dce2"),
+          category: "Sextoy",
+          price: 60,
+          desc: "Format compact et discret.",
+        },
+        {
+          id: "fixed-s-6",
+          name: "Sextoy Wand",
+          image: makeSvgDataUri("Sextoy Wand", "#f6dbe1"),
+          category: "Sextoy",
+          price: 68,
+          desc: "Puissance elevee et prise en main facile.",
+        },
+        {
+          id: "fixed-s-7",
+          name: "Sextoy G-Spot",
+          image: makeSvgDataUri("Sextoy G-Spot", "#f6d0d8"),
+          category: "Sextoy",
+          price: 62,
+          desc: "Courbe ciblee pour stimulation precise.",
+        },
+        {
+          id: "fixed-s-8",
+          name: "Sextoy Anal Plug",
+          image: makeSvgDataUri("Sextoy Anal Plug", "#f4c8d2"),
+          category: "Sextoy",
+          price: 40,
+          desc: "Forme ergonomique et base securisee.",
+        },
+        {
+          id: "fixed-s-9",
+          name: "Sextoy Dildo Classique",
+          image: makeSvgDataUri("Sextoy Dildo", "#f3c0cc"),
+          category: "Sextoy",
+          price: 50,
+          desc: "Modele classique, texture douce.",
+        },
+        {
+          id: "fixed-s-10",
+          name: "Sextoy Dildo XL",
+          image: makeSvgDataUri("Sextoy Dildo XL", "#f1b9c8"),
+          category: "Sextoy",
+          price: 74,
+          desc: "Format XL pour sensation intense.",
+        },
+      ];
 
-      function toggleSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("sidebarOverlay");
-        sidebar.classList.toggle("-translate-x-full");
-        overlay.classList.toggle("hidden");
+      function closeMenu() {
+        mobileNav.classList.remove("open");
+        overlay.classList.remove("open");
       }
 
-      function closeSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("sidebarOverlay");
-        sidebar.classList.add("-translate-x-full");
-        overlay.classList.add("hidden");
+      function openMenu() {
+        mobileNav.classList.add("open");
+        overlay.classList.add("open");
       }
 
-      function switchLanguage(lang) {
-        // Update button styles
-        const frBtn = document.getElementById("lang-fr");
-        const enBtn = document.getElementById("lang-en");
-        const frBtnMobile = document.getElementById("lang-fr-mobile");
-        const enBtnMobile = document.getElementById("lang-en-mobile");
+      menuBtn.addEventListener("click", openMenu);
+      overlay.addEventListener("click", closeMenu);
 
-        if (lang === "fr") {
-          frBtn.classList.add("border-gold", "text-gold");
-          frBtn.classList.remove("border-gray-300", "text-gray-600");
-          enBtn.classList.add("border-gray-300", "text-gray-600");
-          enBtn.classList.remove("border-gold", "text-gold");
-
-          frBtnMobile.classList.add("border-gold", "text-gold");
-          frBtnMobile.classList.remove("border-gray-300", "text-gray-600");
-          enBtnMobile.classList.add("border-gray-300", "text-gray-600");
-          enBtnMobile.classList.remove("border-gold", "text-gold");
-        } else {
-          enBtn.classList.add("border-gold", "text-gold");
-          enBtn.classList.remove("border-gray-300", "text-gray-600");
-          frBtn.classList.add("border-gray-300", "text-gray-600");
-          frBtn.classList.remove("border-gold", "text-gold");
-
-          enBtnMobile.classList.add("border-gold", "text-gold");
-          enBtnMobile.classList.remove("border-gray-300", "text-gray-600");
-          frBtnMobile.classList.add("border-gray-300", "text-gray-600");
-          frBtnMobile.classList.remove("border-gold", "text-gold");
-        }
-
-        // Update text content
-        const elements = document.querySelectorAll("[data-lang]");
-        elements.forEach((element) => {
-          const key = element.getAttribute("data-lang");
-          if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
-          }
-        });
-
-        // Update document language
-        document.documentElement.lang = lang;
-
-        // Store language preference
-        localStorage.setItem("preferredLanguage", lang);
-      }
-
-      // Initialize language on page load
-      document.addEventListener("DOMContentLoaded", function () {
-        const savedLang = localStorage.getItem("preferredLanguage") || "fr";
-        switchLanguage(savedLang);
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
       });
+
+      function openModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("open");
+      }
+
+      function closeModal(id) {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("open");
+      }
+
+      function updateCartCount() {
+        document.getElementById("cartBtn").textContent = `Panier (${cart.length})`;
+        document.getElementById("orderSummary").textContent = `Articles dans le panier: ${cart.length}`;
+      }
+
+      function estimatePriceFromTitle(title) {
+        const t = (title || "").toLowerCase();
+        if (t.includes("wig")) return 140;
+        if (t.includes("frontal")) return 110;
+        if (t.includes("closure")) return 95;
+        if (t.includes("bundle")) return 80;
+        if (t.includes("clip-ins")) return 75;
+        return 70;
+      }
+
+      function guessCategory(title) {
+        const t = (title || "").toLowerCase();
+        if (t.includes("wig")) return "Wigs";
+        if (t.includes("frontal")) return "Frontals";
+        if (t.includes("closure")) return "Closures";
+        if (t.includes("bundle")) return "Bundles";
+        return "Hair";
+      }
+
+      function shortDesc(category) {
+        if (category === "Wigs") return "Style moderne et finition naturelle.";
+        if (category === "Frontals") return "Ligne frontale propre et look premium.";
+        if (category === "Closures") return "Pose nette et tenue durable.";
+        if (category === "Bundles") return "Volume et texture pour un rendu glamour.";
+        if (category === "Baskets") return "Modeles tendance avec bon confort.";
+        if (category === "Sandales") return "Collection elegante et legere.";
+        if (category === "Sacs") return "Sacs mode pour toutes les occasions.";
+        if (category === "Gamme capillaire") return "Soins et entretien capillaire.";
+        if (category === "Sextoy") return "Collection intime avec plusieurs modeles.";
+        if (category === "Dildo") return "Collection intime avec plusieurs modeles.";
+        return "Produit capillaire premium.";
+      }
+
+      function csvLineToFields(line) {
+        const values = [];
+        let current = "";
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i += 1) {
+          const ch = line[i];
+          if (ch === '"') {
+            if (inQuotes && line[i + 1] === '"') {
+              current += '"';
+              i += 1;
+            } else {
+              inQuotes = !inQuotes;
+            }
+          } else if (ch === "," && !inQuotes) {
+            values.push(current);
+            current = "";
+          } else {
+            current += ch;
+          }
+        }
+        values.push(current);
+        return values;
+      }
+
+      function parseProductsCsv(text) {
+        const lines = text.split(/\r?\n/).filter((line) => line.trim() !== "");
+        if (lines.length < 2) return [];
+        const headers = csvLineToFields(lines[0]).map((h) => h.trim().toLowerCase());
+        const titleIndex = headers.indexOf("title");
+        const imageIndex = headers.indexOf("image");
+        if (titleIndex === -1 || imageIndex === -1) return [];
+
+        const parsed = [];
+        for (let i = 1; i < lines.length; i += 1) {
+          const cols = csvLineToFields(lines[i]);
+          const title = (cols[titleIndex] || "").trim();
+          const image = (cols[imageIndex] || "").trim();
+          if (!title || !image) continue;
+          const category = guessCategory(title);
+          parsed.push({
+            id: `csv-${i}`,
+            name: title,
+            image,
+            category,
+            price: estimatePriceFromTitle(title),
+            desc: shortDesc(category),
+          });
+        }
+        return parsed;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function renderProducts() {
+        if (!productsGrid) return;
+        const filteredProducts =
+          activeCategory === "All"
+            ? PRODUCTS
+            : PRODUCTS.filter((product) => (product.category || "Produit") === activeCategory);
+        const featured = filteredProducts.slice(0, 24);
+        productsGrid.innerHTML = featured
+          .map((product) => {
+            const safeName = escapeHtml(product.name);
+            const safeDesc = escapeHtml(product.desc);
+            const safeCategory = escapeHtml(product.category || "Produit");
+            return `
+            <article class="detail-card">
+              <img src="${product.image}" alt="${safeName}" loading="lazy" onerror="this.onerror=null;this.src='${makeSvgDataUri(
+                "Image indisponible",
+                "#ececec",
+                "#444444"
+              )}'" />
+              <div class="detail-body">
+                <span class="category-tag">${safeCategory}</span>
+                <h4>${safeName}</h4>
+                <p>${safeDesc}</p>
+                <span class="price">$${product.price}</span>
+                <div class="detail-actions">
+                  <button class="action-btn js-view" data-id="${product.id}" type="button">Voir</button>
+                  <button class="action-btn primary js-add" data-id="${product.id}" type="button">Ajouter</button>
+                </div>
+              </div>
+            </article>`;
+          })
+          .join("");
+      }
+
+      function renderCategoryFilters() {
+        if (!categoryFilters) return;
+        const categories = Array.from(
+          new Set(PRODUCTS.map((product) => product.category || "Produit"))
+        ).sort((a, b) => a.localeCompare(b));
+        const all = ["All", ...categories];
+        categoryFilters.innerHTML = all
+          .map(
+            (category) =>
+              `<button class="filter-btn ${category === activeCategory ? "active" : ""}" data-category="${escapeHtml(
+                category
+              )}" type="button">${escapeHtml(category)}</button>`
+          )
+          .join("");
+      }
+
+      function renderGallery() {
+        if (!galleryGrid) return;
+        if (window.location.hash !== "#galerie") {
+          galleryGrid.innerHTML = "";
+          return;
+        }
+        const galleryItems = PRODUCTS.slice(0, 60);
+        galleryGrid.innerHTML = galleryItems
+          .map(
+            (product) => `<img src="${product.image}" alt="${escapeHtml(product.name)}" loading="lazy" referrerpolicy="no-referrer" />`
+          )
+          .join("");
+      }
+
+      async function loadProducts() {
+        try {
+          const response = await fetch("./products.csv", { cache: "no-store" });
+          if (!response.ok) throw new Error("CSV introuvable");
+          const csvText = await response.text();
+          PRODUCTS = [...FIXED_PRODUCTS, ...parseProductsCsv(csvText)];
+          renderCategoryFilters();
+          renderProducts();
+          renderGallery();
+        } catch (error) {
+          PRODUCTS = [...FIXED_PRODUCTS];
+          renderCategoryFilters();
+          renderProducts();
+          if (galleryGrid) {
+            galleryGrid.innerHTML = "<p>Impossible de charger la galerie pour le moment.</p>";
+          }
+        }
+      }
+
+      function buildOrderLines() {
+        const grouped = new Map();
+        cart.forEach((item) => {
+          const current = grouped.get(item.id) || { ...item, qty: 0 };
+          current.qty += 1;
+          grouped.set(item.id, current);
+        });
+        return Array.from(grouped.values());
+      }
+
+      function buildWhatsAppMessage(method, clientName, clientPhone) {
+        const lines = buildOrderLines();
+        const total = lines.reduce((sum, item) => sum + item.price * item.qty, 0);
+        const currency = "USD";
+        const date = new Date().toLocaleString("fr-FR");
+
+        const itemsText = lines
+          .map((item, index) => {
+            const lineTotal = item.price * item.qty;
+            return `${index + 1}. ${item.name} [${item.category}] x${item.qty} - ${item.price} ${currency} = ${lineTotal} ${currency}`;
+          })
+          .join("\n");
+
+        return [
+          "Bonjour MISS MAKEUP, je veux passer cette commande:",
+          "",
+          `Client: ${clientName}`,
+          `Telephone: ${clientPhone}`,
+          "",
+          itemsText,
+          "",
+          `Montant total: ${total} ${currency}`,
+          `Methode de paiement: ${method}`,
+          `Date: ${date}`,
+        ].join("\n");
+      }
+
+      function sendOrderToWhatsApp(method) {
+        const clientName = document.getElementById("orderClientName").value.trim();
+        const clientPhone = document.getElementById("orderClientPhone").value.trim();
+        if (!clientName || !clientPhone) {
+          alert("Veuillez entrer le nom et le telephone du client.");
+          return false;
+        }
+        const phone = "50942242185";
+        const message = buildWhatsAppMessage(method, clientName, clientPhone);
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank");
+        return true;
+      }
+
+      productsGrid.addEventListener("click", (event) => {
+        const addBtn = event.target.closest(".js-add");
+        const viewBtn = event.target.closest(".js-view");
+        if (addBtn) {
+          const id = addBtn.dataset.id;
+          const product = PRODUCTS.find((p) => String(p.id) === id);
+          if (product) {
+            cart.push(product);
+            updateCartCount();
+          }
+          return;
+        }
+        if (viewBtn) {
+          const id = viewBtn.dataset.id;
+          const product = PRODUCTS.find((p) => String(p.id) === id);
+          if (!product) return;
+          document.getElementById("quickTitle").textContent = product.name;
+          document.getElementById("quickCategory").textContent = product.category || "Produit";
+          document.getElementById("quickDesc").textContent = product.desc;
+          document.getElementById("quickPrice").textContent = `$${product.price}`;
+          openModal("quickModal");
+        }
+      });
+
+      if (categoryFilters) {
+        categoryFilters.addEventListener("click", (event) => {
+          const btn = event.target.closest(".filter-btn");
+          if (!btn) return;
+          activeCategory = btn.dataset.category || "All";
+          renderCategoryFilters();
+          renderProducts();
+        });
+      }
+
+      document.getElementById("cartBtn").addEventListener("click", () => {
+        if (cart.length === 0) {
+          alert("Votre panier est vide.");
+          return;
+        }
+        openModal("paymentModal");
+      });
+
+      document.querySelectorAll(".js-pay").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const method = btn.dataset.method;
+          const sent = sendOrderToWhatsApp(method);
+          if (!sent) return;
+          cart = [];
+          updateCartCount();
+          document.getElementById("orderClientName").value = "";
+          document.getElementById("orderClientPhone").value = "";
+          closeModal("paymentModal");
+        });
+      });
+
+      document.getElementById("openAccount").addEventListener("click", () => openModal("accountModal"));
+      document.getElementById("openNewsletter").addEventListener("click", () => openModal("newsletterModal"));
+
+      document.getElementById("confirmAccount").addEventListener("click", () => {
+        const name = document.getElementById("acctName").value.trim();
+        const email = document.getElementById("acctEmail").value.trim();
+        const pwd = document.getElementById("acctPwd").value;
+        if (!name || !email || !pwd) {
+          alert("Veuillez remplir tous les champs du compte.");
+          return;
+        }
+        alert(`Compte cree pour ${name}.`);
+        closeModal("accountModal");
+      });
+
+      document.getElementById("confirmNewsletter").addEventListener("click", () => {
+        const email = document.getElementById("newsletterInput").value.trim();
+        if (!email) {
+          alert("Entrez un email valide.");
+          return;
+        }
+        alert("Abonnement newsletter confirme.");
+        closeModal("newsletterModal");
+      });
+
+      document.querySelectorAll("[data-close-modal]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          closeModal(btn.dataset.closeModal);
+        });
+      });
+
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) modal.classList.remove("open");
+        });
+      });
+
+      document.getElementById("contactForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        alert("Message envoye. Nous revenons vers vous rapidement.");
+        event.currentTarget.reset();
+      });
+
+      window.addEventListener("hashchange", () => {
+        renderGallery();
+      });
+
+      updateCartCount();
+      loadProducts();
     </script>
   </body>
 </html>
