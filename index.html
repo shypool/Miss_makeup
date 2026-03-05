@@ -646,6 +646,26 @@
           grid-template-columns: 1fr;
         }
 
+        .card,
+        .detail-card,
+        .panel,
+        .modal-card {
+          border-radius: 12px;
+          border-width: 1px;
+        }
+
+        .card img,
+        .detail-card img {
+          border-top-left-radius: 12px;
+          border-top-right-radius: 12px;
+        }
+
+        .detail-body,
+        .card-body,
+        .panel {
+          padding: 12px;
+        }
+
         .masonry {
           columns: 2 150px;
         }
@@ -686,6 +706,26 @@
 
         .modal {
           padding: 8px;
+        }
+
+        .card,
+        .detail-card,
+        .panel,
+        .modal-card {
+          border-radius: 10px;
+          border-color: #d9cfbf;
+        }
+
+        .card img,
+        .detail-card img {
+          height: 170px;
+        }
+
+        .detail-body,
+        .card-body,
+        .panel,
+        .modal-card {
+          padding: 10px;
         }
 
         .cart-fab {
@@ -797,7 +837,7 @@
             </article>
 
             <article class="card">
-              <img src="./sextoy/vibrator.svg" alt="Sextoy" />
+              <img src="https://unsplash.com/photos/a-pink-and-gold-plate-with-a-blue-object-on-it-bW7y5PhWcuQ/download?force=true&w=900" alt="Sextoy" />
               <div class="card-body">
                 <h3>Sextoy</h3>
                 <p>Collection intime: langue, fleur, vibrator et plus.</p>
@@ -1045,7 +1085,7 @@
         {
           id: "fixed-s-1",
           name: "Sextoy Langue",
-          image: makeSvgDataUri("Sextoy Langue", "#f7d4d4"),
+          image: "https://unsplash.com/photos/a-pair-of-scissors-and-a-cup-TfCFzMaYaok/download?force=true&w=900",
           category: "Sextoy",
           price: 45,
           desc: "Modele langue, texture souple.",
@@ -1053,7 +1093,7 @@
         {
           id: "fixed-s-2",
           name: "Sextoy Fleur",
-          image: makeSvgDataUri("Sextoy Fleur", "#f3c7cf"),
+          image: "https://unsplash.com/photos/pink-plastic-container-with-brown-wooden-handle-tit9Xb9ucXY/download?force=true&w=900",
           category: "Sextoy",
           price: 48,
           desc: "Design fleur, stimulation douce.",
@@ -1061,7 +1101,7 @@
         {
           id: "fixed-s-3",
           name: "Sextoy Vibrator",
-          image: makeSvgDataUri("Sextoy Vibrator", "#f5ccd7"),
+          image: "https://unsplash.com/photos/a-pink-and-gold-plate-with-a-blue-object-on-it-bW7y5PhWcuQ/download?force=true&w=900",
           category: "Sextoy",
           price: 52,
           desc: "Vibrations reglables, usage confortable.",
@@ -1069,7 +1109,7 @@
         {
           id: "fixed-s-4",
           name: "Sextoy Rabbit",
-          image: makeSvgDataUri("Sextoy Rabbit", "#f6d2dc"),
+          image: "https://unsplash.com/photos/a-pink-object-sitting-on-top-of-a-wooden-table-ZJX8EGDYDd4/download?force=true&w=900",
           category: "Sextoy",
           price: 58,
           desc: "Double stimulation avec design rabbit.",
@@ -1077,7 +1117,7 @@
         {
           id: "fixed-s-5",
           name: "Sextoy Bullet",
-          image: makeSvgDataUri("Sextoy Bullet", "#f9dce2"),
+          image: "https://unsplash.com/photos/a-woman-lying-on-a-bed-with-a-red-object-in-her-hand-PpDZ78EJhVA/download?force=true&w=900",
           category: "Sextoy",
           price: 60,
           desc: "Format compact et discret.",
@@ -1085,7 +1125,7 @@
         {
           id: "fixed-s-6",
           name: "Sextoy Wand",
-          image: makeSvgDataUri("Sextoy Wand", "#f6dbe1"),
+          image: "https://unsplash.com/photos/woman-in-white-knit-sweater-sitting-beside-man-in-blue-crew-neck-shirt-1q0r2uvFYIs/download?force=true&w=900",
           category: "Sextoy",
           price: 68,
           desc: "Puissance elevee et prise en main facile.",
@@ -1093,7 +1133,7 @@
         {
           id: "fixed-s-7",
           name: "Sextoy G-Spot",
-          image: makeSvgDataUri("Sextoy G-Spot", "#f6d0d8"),
+          image: "https://unsplash.com/photos/seorang-wanita-berbaring-di-tempat-tidur-dengan-ponsel-KeOuSYBxSPA/download?force=true&w=900",
           category: "Sextoy",
           price: 62,
           desc: "Courbe ciblee pour stimulation precise.",
@@ -1101,7 +1141,7 @@
         {
           id: "fixed-s-8",
           name: "Sextoy Anal Plug",
-          image: makeSvgDataUri("Sextoy Anal Plug", "#f4c8d2"),
+          image: "https://unsplash.com/photos/Bfm5J9CRFMw/download?force=true&w=900",
           category: "Sextoy",
           price: 40,
           desc: "Forme ergonomique et base securisee.",
@@ -1109,7 +1149,7 @@
         {
           id: "fixed-s-9",
           name: "Sextoy Dildo Classique",
-          image: makeSvgDataUri("Sextoy Dildo", "#f3c0cc"),
+          image: "https://unsplash.com/photos/a-pair-of-scissors-and-a-cup-TfCFzMaYaok/download?force=true&w=900",
           category: "Sextoy",
           price: 50,
           desc: "Modele classique, texture douce.",
@@ -1117,7 +1157,7 @@
         {
           id: "fixed-s-10",
           name: "Sextoy Dildo XL",
-          image: makeSvgDataUri("Sextoy Dildo XL", "#f1b9c8"),
+          image: "https://unsplash.com/photos/a-pink-and-gold-plate-with-a-blue-object-on-it-bW7y5PhWcuQ/download?force=true&w=900",
           category: "Sextoy",
           price: 74,
           desc: "Format XL pour sensation intense.",
